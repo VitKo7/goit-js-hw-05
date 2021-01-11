@@ -1,24 +1,26 @@
 class Car {
-  constructor({ speed = 0, price, maxSpeed, isOn = false, distance = 0 }) {
-    this.speed = speed;
-    this.price = price;
+  constructor({ price, maxSpeed }) {
+    this.speed = 0;
+    this.isOn = false;
+    this.distance = 0;
     this.maxSpeed = maxSpeed;
-    this.isOn = isOn;
-    this.distance = distance;
+    this._price = price;
   }
 
   static getSpecs(car) {
-    return `maxSpeed: ${maxSpeed}, speed: ${speed}, isOn: ${isOn}, distance: ${distance}, price: ${price}`;
+    console.log(
+      `maxSpeed: ${car.maxSpeed}, speed: ${car.speed}, isOn: ${car.isOn}, distance: ${car.distance}, price: ${car._price}`,
+    );
   }
 
   get price() {
-    return this.price;
+    return this._price;
   }
 
   set price(value) {
     // console.log(value);
     // console.log(this.price);
-    this.price = value; // ? why 'Uncaught RangeError: Maximum call stack size exceeded' ???
+    this._price = value;
   }
 
   turnOn() {
@@ -31,15 +33,16 @@ class Car {
   }
 
   accelerate(value) {
-    this.speed + value <= this.maxSpeed ? this.speed + value : this.speed;
+    this.speed =
+      this.speed + value <= this.maxSpeed ? this.speed + value : this.speed;
   }
 
   decelerate(value) {
-    this.speed - value >= 0 ? this.speed - value : this.speed;
+    this.speed = this.speed - value >= 0 ? this.speed - value : this.speed;
   }
 
   drive(hours) {
-    this.isOn === true ? (this.distance = hours * this.speed) : this.distance;
+    this.isOn === true ? (this.distance += hours * this.speed) : this.distance;
   }
 }
 
