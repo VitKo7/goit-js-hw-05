@@ -183,3 +183,239 @@ cashier(list, userMoney); */
 // ! -------------------- END OF 2021-01-11 --------------------
 
 // ! -------------------- START OF 2021-01-12 --------------------
+
+// todo: переписать фун-цию с использованием тернарника и стрел.ф-цииЖ
+// function ask(question, yes, no) {
+//     if (confirm(question)) yes()
+//     else no();
+//   }
+
+//   ask(
+//     "Вы согласны?",
+//     function() { alert("Вы согласились."); },
+//     function() { alert("Вы отменили выполнение."); }
+//   );
+
+// const ask = (question, yes, no) => {
+//   confirm(question) ? yes() : no();
+// };
+
+// ask(
+//   'Вы согласны?',
+//   () => {
+//     alert('Вы согласились.');
+//   },
+//   () => {
+//     alert('Вы отменили выполнение.');
+//   },
+// );
+
+// ! ------------------
+// const counter = function () {
+//   let n = 0;
+//   const increment = q => {
+//     n += q;
+//   };
+//   const show = function () {
+//     console.log(n);
+//   };
+//   return { increment, show };
+// };
+// let A = counter();
+// A.increment(10);
+// A.increment(100);
+// A.show();
+
+// ! ------------------
+/*  
+Напиши функцию-конструкор User для создания 
+пользователя со следующим свойствами:
+- name - строка (имя)
+- age - число (возраст)
+- friends - число (кол-во друзей)
+Имя, возраст и друзей, 
+будут переданы при вызове конструктора User.
+Добавь метод getInfo(), который, выводит строку:
+`User ${имя} is ${возраст} years old and has ${кол-во друщзей} friends`
+*/
+
+/*
+const User = function (name, age, friends) {
+  this.name = name;
+  this.age = age;
+  this.friends = friends;
+
+  this.getInfo = function () {
+    console.log(
+      `User ${this.name} is ${this.age} years old and has ${this.friends} friends`,
+    );
+  };
+};
+
+const user1 = new User('John', 25, 5);
+console.log(user1);
+user1.getInfo(); */
+
+// ! ------------------
+/*
+const dog = {
+  barks: true,
+  eat: true,
+  paws: 4,
+};
+const bethoven = Object.create(dog);
+bethoven.paws = 3;
+console.log(bethoven.paws);
+
+const puppy = Object.create(bethoven);
+const puppy2 = Object.create(dog);
+console.log('PUPPY  ', puppy.paws);
+console.log('PUPPY2  ', puppy2.paws);
+
+Object.prototype.day = 31;
+console.log(Object.prototype);
+let obj = {};
+console.log(obj.day); */
+
+// ! ------------------
+//? Elections
+// Напишите ф-цию конструктор, которая будет создавать избирателя (name);
+// У избирателя будет метод vote(presidentName) который будет менят глобальный объект
+//  статистики голосов и добавлять туда ключ (имя избирателя) и значение (имя президента).
+// Один избиратель голосует только один раз(!)
+// В конце подсчитайте голоса и определите кто выиграл выборы
+
+/*const electionsResult = {};
+
+const candidate = {
+  trump: 'Trump',
+  baiden: 'Baiden',
+};
+
+const Voter = function (name, choice) {
+  this.name = name;
+  this.choice = choice;
+
+  this.vote = function () {
+    if (electionsResult[this.name]) {
+      return;
+    } else {
+      electionsResult[this.name] = this.choice;
+    }
+  };
+};
+
+const a = new Voter('Vova', candidate.baiden);
+a.vote();
+console.log(a);
+console.log(electionsResult); */
+
+// ! ver.2
+/*
+const electionsResult = {};
+
+const votedResult = {};
+
+const candidate = {
+  trump: 'Trump',
+  baiden: 'Baiden',
+};
+
+const Voter = function (name) {
+  this.name = name;
+  // this.choice = choice;
+
+  this.vote = function (choice) {
+    if (electionsResult[this.name]) {
+      return;
+    } else {
+      electionsResult[this.name] = choice;
+    }
+  };
+};
+
+const a = new Voter('Vova');
+const b = new Voter('Petya');
+const c = new Voter('Vasia');
+const d = new Voter('Roma');
+const f = new Voter('adfas');
+const g = new Voter('advfds');
+const h = new Voter('lkjoij');
+const k = new Voter('reerw');
+a.vote(candidate.baiden);
+b.vote(candidate.baiden);
+c.vote(candidate.baiden);
+d.vote(candidate.trump);
+f.vote(candidate.baiden);
+g.vote(candidate.trump);
+h.vote(candidate.baiden);
+k.vote(candidate.trump);
+console.log(a);
+console.log(electionsResult);
+
+const countResults = function (electionsResult, votedResult) {
+  for (let key in electionsResult) {
+    // console.log(electionsResult[key]);
+    votedResult[electionsResult[key]] = 0;
+  }
+  for (let vote in electionsResult) {
+    votedResult[electionsResult[vote]] += 1;
+    // console.log(true);
+  }
+
+  console.log(votedResult);
+};
+
+countResults(electionsResult, votedResult); */
+
+// ! --------------------
+
+// Human, elf, dwarf,
+// power, life, exp,
+
+const Human = function (power, life, exp, dmg) {
+  this.power = power;
+  this.life = life;
+  this.exp = exp;
+  this.dmg = dmg;
+
+  this.attack = function (obj) {
+    obj.life -= this.dmg;
+    console.log(obj);
+    console.log(`Объект ${obj.name} получил урон ${this.dmg}`); // ! check names
+  };
+};
+
+const Elf = function (power, life, exp) {
+  this.power = power;
+  this.life = life;
+  this.exp = exp;
+};
+
+const Dworf = function (power, life, exp) {
+  this.power = power;
+  this.life = life;
+  this.exp = exp;
+};
+
+const human1 = new Human(100, 100, 100, 10);
+const elf1 = new Elf(200, 200, 0);
+const dworf1 = new Dworf(150, 300, 300);
+
+const aragorn = Object.create(human1);
+aragorn.name = 'Aragorn';
+aragorn.weapon = 'sword';
+
+const legolas = Object.create(elf1);
+legolas.name = 'Legolas';
+legolas.weapon = 'bow';
+
+const givi = Object.create(dworf1);
+givi.name = 'Givi';
+givi.weapon = 'axe';
+
+console.log(aragorn);
+console.log(legolas);
+console.log(givi);
+
+aragorn.attack(givi);
